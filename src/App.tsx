@@ -38,8 +38,16 @@ const App = () => {
         <p>Popup Language: {bookJson[page][popUpLanguage]}</p>
       </>
       }
-      <Button variant="contained" onClick={() => setPage(page-1)}>Previous Page</Button>
-      <Button variant="contained" onClick={() => setPage(page+1)}>Next Page</Button>
+      <Button 
+        variant="contained" 
+        onClick={() => setPage(page-1)}
+        disabled={page === 0}
+      >Previous Page</Button>
+      <Button 
+        variant="contained" 
+        onClick={() => setPage(page+1)}
+        disabled={bookJson.length === page}
+      >Next Page</Button>
     </div>
   );
 }
