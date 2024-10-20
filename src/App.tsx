@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import aliceInWonderland from './translations/aliceInWonderland.json';
 import theCantervilleGhost from './translations/theCantervilleGhost.json';
+import Button from '@mui/material/Button';
 import './App.css';
 
 type Book = {
@@ -27,7 +28,6 @@ const App = () => {
   const [page, setPage] = useState<number>(0)
   const [textLanguage, setTextLanguage] = useState<Language | null>('English')
   const [popUpLanguage, setPopupLanguageLanguage] = useState<Language | null>('French')
-  
 
   return (
     <div className="App">
@@ -38,6 +38,8 @@ const App = () => {
         <p>Popup Language: {bookJson[page][popUpLanguage]}</p>
       </>
       }
+      <Button variant="contained" onClick={() => setPage(page-1)}>Previous Page</Button>
+      <Button variant="contained" onClick={() => setPage(page+1)}>Next Page</Button>
     </div>
   );
 }
