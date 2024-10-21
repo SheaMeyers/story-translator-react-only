@@ -2,6 +2,9 @@ import { useState } from 'react';
 import aliceInWonderland from './translations/aliceInWonderland.json';
 import theCantervilleGhost from './translations/theCantervilleGhost.json';
 import Button from '@mui/material/Button';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import Typography from '@mui/material/Typography';
 import './App.css';
 
 type Book = {
@@ -34,8 +37,15 @@ const App = () => {
       <h1>Story translator</h1>
       {textLanguage && popUpLanguage && 
       <>
-        <p>Text Language: {bookJson[page][textLanguage]}</p>
-        <p>Popup Language: {bookJson[page][popUpLanguage]}</p>
+        <Card>
+          <CardContent>
+            <Typography variant="body2">
+              {bookJson[page][textLanguage]}
+            </Typography>
+          </CardContent>
+        </Card>
+        {/* <p>Text Language: {bookJson[page][textLanguage]}</p>
+        <p>Popup Language: {bookJson[page][popUpLanguage]}</p> */}
       </>
       }
       <Button 
