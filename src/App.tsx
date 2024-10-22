@@ -4,6 +4,7 @@ import theCantervilleGhost from './translations/theCantervilleGhost.json'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import Modal from '@mui/material/Modal'
 import Popover from "@mui/material/Popover"
 import Typography from '@mui/material/Typography'
 import './App.css';
@@ -31,6 +32,7 @@ type Paragraph = {
 const App = () => {
   const [bookJson, setBookJson] = useState<Paragraph[]>(aliceInWonderland)
   const [page, setPage] = useState<number>(0)
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [showPopover, setShowPopover] = useState<boolean>(false)
   const [textLanguage, setTextLanguage] = useState<Language | null>('English')
   const [popUpLanguage, setPopupLanguageLanguage] = useState<Language | null>('French')
@@ -38,6 +40,21 @@ const App = () => {
   return (
     <div className="App">
       <h1>Story translator</h1>
+
+      <Button variant="contained" onClick={() => setIsModalOpen(true)}>Open modal</Button>
+      <Modal
+        open={isModalOpen}
+        onClose={() => setIsModalOpen(false)}
+        aria-labelledby="modal-title"
+        aria-describedby="modal-description"
+      >
+        <Card>
+          <CardContent>
+            <p>Put settings here</p>
+          </CardContent>
+        </Card>
+      </Modal>
+
       {textLanguage && popUpLanguage && 
       <>
         <Card>
