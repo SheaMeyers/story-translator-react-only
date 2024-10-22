@@ -4,18 +4,24 @@ import theCantervilleGhost from './translations/theCantervilleGhost.json'
 import Button from '@mui/material/Button'
 import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
+import InputLabel from '@mui/material/InputLabel'
 import Modal from '@mui/material/Modal'
+import MenuItem from '@mui/material/MenuItem'
 import Popover from "@mui/material/Popover"
+import Select, { SelectChangeEvent } from '@mui/material/Select'
 import Typography from '@mui/material/Typography'
 import './App.css';
 
+type BookTitles = 'Alice in Wonderland' | 'The Canterville Ghost'
 
-type Book = {
-  title: 'Alice in Wonderland',
-  file: 'aliceInWonderland'
-} | {
-  title: 'The Canterville Ghost',
-  file: 'theCantervilleGhost'
+const Books = {
+  'Alice in Wonderland': aliceInWonderland,
+  'The Canterville Ghost': theCantervilleGhost
+}
+
+const BookToBookTitle = {
+  aliceInWonderland : 'Alice in Wonderland',
+  theCantervilleGhost: 'The Canterville Ghost'
 }
 
 
@@ -30,12 +36,12 @@ type Paragraph = {
 
 
 const App = () => {
-  const [bookJson, setBookJson] = useState<Paragraph[]>(aliceInWonderland)
+  const [bookJson, setBookJson] = useState<Paragraph[] | null>(null)
   const [page, setPage] = useState<number>(0)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [showPopover, setShowPopover] = useState<boolean>(false)
-  const [textLanguage, setTextLanguage] = useState<Language | null>('English')
-  const [popUpLanguage, setPopupLanguageLanguage] = useState<Language | null>('French')
+  const [textLanguage, setTextLanguage] = useState<Language | null>(null)
+  const [popUpLanguage, setPopupLanguageLanguage] = useState<Language | null>(null)
 
   return (
     <div className="App">
@@ -50,12 +56,47 @@ const App = () => {
       >
         <Card>
           <CardContent>
-            <p>Put settings here</p>
+            <InputLabel id="book-select-label">Choose Book</InputLabel>
+            <Select
+              labelId="book-select-label"
+              id="book-select"
+              value='TODO How to get the book title from this?'
+              label="Age"
+              onChange={(event: SelectChangeEvent) => setBookJson(Books[event.target.value as BookTitles])}
+            >
+              {Object.keys(Books).map(book => <MenuItem value={book}>{book}</MenuItem>)}
+            </Select>
+            <InputLabel id="book-language-select-label">Book Text</InputLabel>
+            <Select
+              labelId="book-language-select-label"
+              id="book-language-select"
+              value={textLanguage?.toString()}
+              label="Age"
+              onChange={(event: SelectChangeEvent) => setTextLanguage(event.target.value as Language)}
+            >
+              <MenuItem value='English'>English</MenuItem>
+              <MenuItem value='Spanish'>Spanish</MenuItem>
+              <MenuItem value='French'>French</MenuItem>
+              <MenuItem value='German'>German</MenuItem>
+            </Select>
+            <InputLabel id="popup-language-select-label">Popup Text</InputLabel>
+            <Select
+              labelId="popup-language-select-label"
+              id="popup-language-select"
+              value={popUpLanguage?.toString()}
+              label="Age"
+              onChange={(event: SelectChangeEvent) => setPopupLanguageLanguage(event.target.value as Language)}
+            >
+              <MenuItem value='English'>English</MenuItem>
+              <MenuItem value='Spanish'>Spanish</MenuItem>
+              <MenuItem value='French'>French</MenuItem>
+              <MenuItem value='German'>German</MenuItem>
+            </Select>
           </CardContent>
         </Card>
       </Modal>
 
-      {textLanguage && popUpLanguage && 
+      {bookJson && textLanguage && popUpLanguage && 
       <>
         <Card>
           <CardContent>
@@ -95,7 +136,7 @@ const App = () => {
       <Button 
         variant="contained" 
         onClick={() => setPage(page+1)}
-        disabled={bookJson.length === page}
+        disabled={!bookJson || bookJson.length === page}
       >Next Page</Button>
     </div>
   );
