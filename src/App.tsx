@@ -60,7 +60,7 @@ const App = () => {
             <Select
               labelId="book-select-label"
               id="book-select"
-              value='TODO How to get the book title from this?'
+              value={Object.keys(Books).find(key => Books[key as BookTitles] === bookJson)}
               label="Age"
               onChange={(event: SelectChangeEvent) => setBookJson(Books[event.target.value as BookTitles])}
             >
