@@ -9,6 +9,7 @@ import Modal from '@mui/material/Modal'
 import MenuItem from '@mui/material/MenuItem'
 import Popover from "@mui/material/Popover"
 import Select, { SelectChangeEvent } from '@mui/material/Select'
+import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography'
 import './App.css';
 
@@ -18,12 +19,6 @@ const Books = {
   'Alice in Wonderland': aliceInWonderland,
   'The Canterville Ghost': theCantervilleGhost
 }
-
-const BookToBookTitle = {
-  aliceInWonderland : 'Alice in Wonderland',
-  theCantervilleGhost: 'The Canterville Ghost'
-}
-
 
 type Language = 'English' | 'Spanish' | 'French' | 'German'
 
@@ -92,6 +87,25 @@ const App = () => {
               <MenuItem value='French'>French</MenuItem>
               <MenuItem value='German'>German</MenuItem>
             </Select>
+
+            {bookJson &&
+              <>
+                <InputLabel id="current-page-label">Current Page</InputLabel>
+                <TextField 
+                  id="current-page-input" 
+                  label="Outlined" 
+                  variant="outlined" 
+                  type='number'
+                  value={page+1}
+                  onChange={(e) => {
+                    const newPage = parseInt(e.target.value)-1
+                    if (newPage > -1 && newPage <= bookJson.length)
+                      setPage(newPage)
+                  }}
+                />
+              </>
+            }
+
           </CardContent>
         </Card>
       </Modal>
