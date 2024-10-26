@@ -70,9 +70,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <h1>Story translator</h1>
-
-      <Button variant="contained" onClick={() => setIsModalOpen(true)}>Open modal</Button>
+      <Button variant="contained" className="ModalButton" onClick={() => setIsModalOpen(true)}>Open modal</Button>
       <Modal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -123,7 +121,6 @@ const App = () => {
                 <InputLabel id="current-page-label">Current Page</InputLabel>
                 <TextField 
                   id="current-page-input" 
-                  label="Outlined" 
                   variant="outlined" 
                   type='number'
                   value={page+1}
@@ -172,16 +169,20 @@ const App = () => {
         </Card>
       </>
       }
-      <Button 
-        variant="contained" 
-        onClick={() => updatePage(page-1)}
-        disabled={page === 0}
-      >Previous Page</Button>
-      <Button 
-        variant="contained" 
-        onClick={() => updatePage(page+1)}
-        disabled={!bookJson || bookJson.length === page}
-      >Next Page</Button>
+      {bookJson && textLanguage && popUpLanguage && 
+        <div className='ButtonContainer'>
+          <Button 
+            variant="contained" 
+            onClick={() => updatePage(page-1)}
+            disabled={page === 0}
+          >Previous Page</Button>
+          <Button 
+            variant="contained" 
+            onClick={() => updatePage(page+1)}
+            disabled={!bookJson || bookJson.length === page}
+          >Next Page</Button>
+        </div>
+    }
     </div>
   );
 }

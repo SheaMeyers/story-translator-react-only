@@ -4,5 +4,22 @@
   text-align: center;
   display: flex;
   flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.MuiModal-root {
+  display: flex;
   justify-content: center;
+  align-items: center;
+}
+
+.ButtonContainer {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.ModalButton {
+  width: 100%;
 }
