@@ -11,6 +11,16 @@ import Popover from "@mui/material/Popover"
 import Select, { SelectChangeEvent } from '@mui/material/Select'
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography'
+import { 
+  getSelectedBookCookie, 
+  getSelectedPageCookie, 
+  getSelectedPopupLanguageCookie, 
+  getSelectedTextLanguageCookie, 
+  setSelectedBookCookie, 
+  setSelectedPageCookie, 
+  setSelectedPopupLanguageCookie, 
+  setSelectedTextLanguageCookie 
+} from './cookies'
 import './App.css';
 
 type BookTitles = 'Alice in Wonderland' | 'The Canterville Ghost'
@@ -31,12 +41,32 @@ type Paragraph = {
 
 
 const App = () => {
-  const [bookJson, setBookJson] = useState<Paragraph[] | null>(null)
-  const [page, setPage] = useState<number>(0)
+  const [bookJson, setBookJson] = useState<Paragraph[] | null>(Books[getSelectedBookCookie() as BookTitles] || null)
+  const [page, setPage] = useState<number>(getSelectedPageCookie() || 0)
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false)
   const [showPopover, setShowPopover] = useState<boolean>(false)
-  const [textLanguage, setTextLanguage] = useState<Language | null>(null)
-  const [popUpLanguage, setPopupLanguageLanguage] = useState<Language | null>(null)
+  const [textLanguage, setTextLanguage] = useState<Language | null>(getSelectedTextLanguageCookie() as Language || null)
+  const [popUpLanguage, setPopupLanguage] = useState<Language | null>(getSelectedPopupLanguageCookie() as Language || null)
+
+  const updateBookJson = (bookTitle: BookTitles) => {
+    setBookJson(Books[bookTitle])
+    setSelectedBookCookie(bookTitle)
+  }
+
+  const updateTextLanguage = (language: Language) => {
+    setTextLanguage(language)
+    setSelectedTextLanguageCookie(language)
+  }
+
+  const updatePopupLanguage = (language: Language) => {
+    setPopupLanguage(language)
+    setSelectedPopupLanguageCookie(language)
+  }
+
+  const updatePage = (page: number) => {
+    setPage(page)
+    setSelectedPageCookie(page)
+  }
 
   return (
     <div className="App">
@@ -57,7 +87,7 @@ const App = () => {
               id="book-select"
               value={Object.keys(Books).find(key => Books[key as BookTitles] === bookJson)}
               label="Age"
-              onChange={(event: SelectChangeEvent) => setBookJson(Books[event.target.value as BookTitles])}
+              onChange={(event: SelectChangeEvent) => updateBookJson(event.target.value as BookTitles)}
             >
               {Object.keys(Books).map(book => <MenuItem value={book}>{book}</MenuItem>)}
             </Select>
@@ -67,7 +97,7 @@ const App = () => {
               id="book-language-select"
               value={textLanguage?.toString()}
               label="Age"
-              onChange={(event: SelectChangeEvent) => setTextLanguage(event.target.value as Language)}
+              onChange={(event: SelectChangeEvent) => updateTextLanguage(event.target.value as Language)}
             >
               <MenuItem value='English'>English</MenuItem>
               <MenuItem value='Spanish'>Spanish</MenuItem>
@@ -80,7 +110,7 @@ const App = () => {
               id="popup-language-select"
               value={popUpLanguage?.toString()}
               label="Age"
-              onChange={(event: SelectChangeEvent) => setPopupLanguageLanguage(event.target.value as Language)}
+              onChange={(event: SelectChangeEvent) => updatePopupLanguage(event.target.value as Language)}
             >
               <MenuItem value='English'>English</MenuItem>
               <MenuItem value='Spanish'>Spanish</MenuItem>
@@ -144,12 +174,12 @@ const App = () => {
       }
       <Button 
         variant="contained" 
-        onClick={() => setPage(page-1)}
+        onClick={() => updatePage(page-1)}
         disabled={page === 0}
       >Previous Page</Button>
       <Button 
         variant="contained" 
-        onClick={() => setPage(page+1)}
+        onClick={() => updatePage(page+1)}
         disabled={!bookJson || bookJson.length === page}
       >Next Page</Button>
     </div>
