@@ -70,7 +70,13 @@ const App = () => {
 
   return (
     <div className="App">
-      <Button variant="contained" className="ModalButton" onClick={() => setIsModalOpen(true)}>Open modal</Button>
+      <Button
+        variant="contained"
+        className="ModalButton"
+        onClick={() => setIsModalOpen(true)}
+      >
+        Open modal
+      </Button>
       <Modal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -83,11 +89,17 @@ const App = () => {
             <Select
               labelId="book-select-label"
               id="book-select"
-              value={Object.keys(Books).find(key => Books[key as BookTitles] === bookJson)}
+              value={Object.keys(Books).find(
+                (key) => Books[key as BookTitles] === bookJson
+              )}
               label="Age"
-              onChange={(event: SelectChangeEvent) => updateBookJson(event.target.value as BookTitles)}
+              onChange={(event: SelectChangeEvent) =>
+                updateBookJson(event.target.value as BookTitles)
+              }
             >
-              {Object.keys(Books).map(book => <MenuItem value={book}>{book}</MenuItem>)}
+              {Object.keys(Books).map((book) => (
+                <MenuItem value={book}>{book}</MenuItem>
+              ))}
             </Select>
             <InputLabel id="book-language-select-label">Book Text</InputLabel>
             <Select
@@ -95,12 +107,14 @@ const App = () => {
               id="book-language-select"
               value={textLanguage?.toString()}
               label="Age"
-              onChange={(event: SelectChangeEvent) => updateTextLanguage(event.target.value as Language)}
+              onChange={(event: SelectChangeEvent) =>
+                updateTextLanguage(event.target.value as Language)
+              }
             >
-              <MenuItem value='English'>English</MenuItem>
-              <MenuItem value='Spanish'>Spanish</MenuItem>
-              <MenuItem value='French'>French</MenuItem>
-              <MenuItem value='German'>German</MenuItem>
+              <MenuItem value="English">English</MenuItem>
+              <MenuItem value="Spanish">Spanish</MenuItem>
+              <MenuItem value="French">French</MenuItem>
+              <MenuItem value="German">German</MenuItem>
             </Select>
             <InputLabel id="popup-language-select-label">Popup Text</InputLabel>
             <Select
@@ -108,54 +122,51 @@ const App = () => {
               id="popup-language-select"
               value={popUpLanguage?.toString()}
               label="Age"
-              onChange={(event: SelectChangeEvent) => updatePopupLanguage(event.target.value as Language)}
+              onChange={(event: SelectChangeEvent) =>
+                updatePopupLanguage(event.target.value as Language)
+              }
             >
-              <MenuItem value='English'>English</MenuItem>
-              <MenuItem value='Spanish'>Spanish</MenuItem>
-              <MenuItem value='French'>French</MenuItem>
-              <MenuItem value='German'>German</MenuItem>
+              <MenuItem value="English">English</MenuItem>
+              <MenuItem value="Spanish">Spanish</MenuItem>
+              <MenuItem value="French">French</MenuItem>
+              <MenuItem value="German">German</MenuItem>
             </Select>
 
-            {bookJson &&
+            {bookJson && (
               <>
                 <InputLabel id="current-page-label">Current Page</InputLabel>
-                <TextField 
-                  id="current-page-input" 
-                  variant="outlined" 
-                  type='number'
-                  value={page+1}
+                <TextField
+                  id="current-page-input"
+                  variant="outlined"
+                  type="number"
+                  value={page + 1}
                   onChange={(e) => {
-                    const newPage = parseInt(e.target.value)-1
+                    const newPage = parseInt(e.target.value) - 1;
                     if (newPage > -1 && newPage <= bookJson.length)
-                      setPage(newPage)
+                      setPage(newPage);
                   }}
                 />
               </>
-            }
-
+            )}
           </CardContent>
         </Card>
       </Modal>
 
-      {bookJson && textLanguage && popUpLanguage && 
-      <>
-        <Card>
-          <CardContent>
-            <span 
-              id='card-content-span'
-              onClick={() => setShowPopover(!showPopover)}
-            >
+      {bookJson && textLanguage && popUpLanguage && (
+        <span id="CardContentSpan" onClick={() => setShowPopover(!showPopover)}>
+          <Card>
+            <CardContent>
               <Typography variant="body2">
                 {bookJson[page][textLanguage]}
               </Typography>
               <Popover
-                id='translation-popover'
+                id="translation-popover"
                 open={showPopover}
-                anchorEl={document.getElementById('card-content-span')}
+                anchorEl={document.getElementById("CardContentSpan")}
                 onClose={() => setShowPopover(false)}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 transformOrigin={{
                   vertical: "bottom",
@@ -164,25 +175,29 @@ const App = () => {
               >
                 {bookJson[page][popUpLanguage]}
               </Popover>
-            </span>
-          </CardContent>
-        </Card>
-      </>
-      }
-      {bookJson && textLanguage && popUpLanguage && 
-        <div className='ButtonContainer'>
-          <Button 
-            variant="contained" 
-            onClick={() => updatePage(page-1)}
+            </CardContent>
+          </Card>
+        </span>
+      )}
+
+      {bookJson && textLanguage && popUpLanguage && (
+        <div className="ButtonContainer">
+          <Button
+            variant="contained"
+            onClick={() => updatePage(page - 1)}
             disabled={page === 0}
-          >Previous Page</Button>
-          <Button 
-            variant="contained" 
-            onClick={() => updatePage(page+1)}
+          >
+            Previous Page
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => updatePage(page + 1)}
             disabled={!bookJson || bookJson.length === page}
-          >Next Page</Button>
+          >
+            Next Page
+          </Button>
         </div>
-    }
+      )}
     </div>
   );
 }
