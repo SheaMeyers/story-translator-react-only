@@ -75,7 +75,11 @@ const App = () => {
         className="ModalButton"
         onClick={() => setIsModalOpen(true)}
       >
-        Open modal
+        {(!bookJson || !textLanguage || !popUpLanguage) ?
+          <span>Select book and languages</span>
+          :
+          <span>Change book or languages</span>
+        }
       </Button>
       <Modal
         open={isModalOpen}
