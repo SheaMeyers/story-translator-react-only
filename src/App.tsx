@@ -25,7 +25,6 @@ import { BookTitles, Language, Paragraph } from "./types";
 import { Languages } from "./constants";
 import "./App.css";
 
-
 const Books = {
   "Alice in Wonderland": aliceInWonderland,
   "The Canterville Ghost": theCantervilleGhost,
@@ -78,6 +77,7 @@ const App = () => {
           <span>Change book or languages</span>
         )}
       </Button>
+
       <Modal
         open={isModalOpen}
         onClose={() => setIsModalOpen(false)}
@@ -160,50 +160,53 @@ const App = () => {
       </Modal>
 
       {bookJson && textLanguage && popUpLanguage && (
-        <span id="CardContentSpan" onClick={() => setShowPopover(!showPopover)}>
-          <Card>
-            <CardContent>
-              <Typography variant="body2">
-                {bookJson[page][textLanguage]}
-              </Typography>
-              <Popover
-                id="translation-popover"
-                open={showPopover}
-                anchorEl={document.getElementById("CardContentSpan")}
-                onClose={() => setShowPopover(false)}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-              >
-                {bookJson[page][popUpLanguage]}
-              </Popover>
-            </CardContent>
-          </Card>
-        </span>
-      )}
+        <>
+          <span
+            id="CardContentSpan"
+            onClick={() => setShowPopover(!showPopover)}
+          >
+            <Card>
+              <CardContent>
+                <Typography variant="body2">
+                  {bookJson[page][textLanguage]}
+                </Typography>
+                <Popover
+                  id="translation-popover"
+                  open={showPopover}
+                  anchorEl={document.getElementById("CardContentSpan")}
+                  onClose={() => setShowPopover(false)}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  transformOrigin={{
+                    vertical: "bottom",
+                    horizontal: "left",
+                  }}
+                >
+                  {bookJson[page][popUpLanguage]}
+                </Popover>
+              </CardContent>
+            </Card>
+          </span>
 
-      {bookJson && textLanguage && popUpLanguage && (
-        <div className="ButtonContainer">
-          <Button
-            variant="contained"
-            onClick={() => updatePage(page - 1)}
-            disabled={page === 0}
-          >
-            Previous Page
-          </Button>
-          <Button
-            variant="contained"
-            onClick={() => updatePage(page + 1)}
-            disabled={!bookJson || bookJson.length === page}
-          >
-            Next Page
-          </Button>
-        </div>
+          <div className="ButtonContainer">
+            <Button
+              variant="contained"
+              onClick={() => updatePage(page - 1)}
+              disabled={page === 0}
+            >
+              Previous Page
+            </Button>
+            <Button
+              variant="contained"
+              onClick={() => updatePage(page + 1)}
+              disabled={!bookJson || bookJson.length === page}
+            >
+              Next Page
+            </Button>
+          </div>
+        </>
       )}
     </div>
   );
