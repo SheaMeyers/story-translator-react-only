@@ -21,8 +21,6 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 ## Still TODO
-- Make languages an enum
-- Move types to it's own file
 - Move modal to it's own file
 - Ensure mobile styling works
 - Deploy to github pages

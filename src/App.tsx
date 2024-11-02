@@ -21,36 +21,28 @@ import {
   setSelectedPopupLanguageCookie,
   setSelectedTextLanguageCookie,
 } from "./cookies";
+import { BookTitles, Language, Paragraph } from "./types";
+import { Languages } from "./constants";
 import "./App.css";
 
-type BookTitles = "Alice in Wonderland" | "The Canterville Ghost";
 
 const Books = {
   "Alice in Wonderland": aliceInWonderland,
   "The Canterville Ghost": theCantervilleGhost,
 };
 
-type Language = "English" | "Spanish" | "French" | "German";
-
-type Paragraph = {
-  English: string;
-  Spanish: string;
-  French: string;
-  German: string;
-};
-
 const App = () => {
   const [bookJson, setBookJson] = useState<Paragraph[] | null>(
-    Books[getSelectedBookCookie() as BookTitles] || null
+    Books[getSelectedBookCookie()] || null
   );
   const [page, setPage] = useState<number>(getSelectedPageCookie() || 0);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const [showPopover, setShowPopover] = useState<boolean>(false);
   const [textLanguage, setTextLanguage] = useState<Language | null>(
-    (getSelectedTextLanguageCookie() as Language) || null
+    getSelectedTextLanguageCookie() || null
   );
   const [popUpLanguage, setPopupLanguage] = useState<Language | null>(
-    (getSelectedPopupLanguageCookie() as Language) || null
+    getSelectedPopupLanguageCookie() || null
   );
 
   const updateBookJson = (bookTitle: BookTitles) => {
@@ -123,10 +115,9 @@ const App = () => {
                   updateTextLanguage(event.target.value as Language)
                 }
               >
-                <MenuItem value="English">English</MenuItem>
-                <MenuItem value="Spanish">Spanish</MenuItem>
-                <MenuItem value="French">French</MenuItem>
-                <MenuItem value="German">German</MenuItem>
+                {Languages.map((language) => (
+                  <MenuItem value={language}>{language}</MenuItem>
+                ))}
               </Select>
             </div>
             <div className="Modal__Chooser">
@@ -142,10 +133,9 @@ const App = () => {
                   updatePopupLanguage(event.target.value as Language)
                 }
               >
-                <MenuItem value="English">English</MenuItem>
-                <MenuItem value="Spanish">Spanish</MenuItem>
-                <MenuItem value="French">French</MenuItem>
-                <MenuItem value="German">German</MenuItem>
+                {Languages.map((language) => (
+                  <MenuItem value={language}>{language}</MenuItem>
+                ))}
               </Select>
             </div>
 
