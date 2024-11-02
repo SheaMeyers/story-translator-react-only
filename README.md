@@ -21,7 +21,6 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 ## Still TODO
-- Add 'help' icons to the language dropdowns to display was is meant
 - Make languages an enum
 - Move types to it's own file
 - Move modal to it's own file

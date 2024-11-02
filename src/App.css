@@ -20,6 +20,10 @@
   width: 100%;
 }
 
+.Modal__Chooser {
+  margin: 5vh;
+}
+
 .ModalButton {
   width: 100%;
 }
