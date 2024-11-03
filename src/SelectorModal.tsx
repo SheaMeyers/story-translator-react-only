@@ -56,7 +56,7 @@ const SelectorModal = ({
             }
           >
             {Object.keys(Books).map((book) => (
-              <MenuItem value={book}>{book}</MenuItem>
+              <MenuItem key={book} value={book}>{book}</MenuItem>
             ))}
           </Select>
         </div>
@@ -72,7 +72,7 @@ const SelectorModal = ({
             }
           >
             {Languages.map((language) => (
-              <MenuItem value={language}>{language}</MenuItem>
+              <MenuItem key={`${language}-book`} value={language}>{language}</MenuItem>
             ))}
           </Select>
         </div>
@@ -88,7 +88,7 @@ const SelectorModal = ({
             }
           >
             {Languages.map((language) => (
-              <MenuItem value={language}>{language}</MenuItem>
+              <MenuItem key={`${language}-pop`} value={language}>{language}</MenuItem>
             ))}
           </Select>
         </div>

@@ -37,7 +37,7 @@ const StoryDisplay = ({
       <span>
         {!hideHelpText &&
             <InputLabel id="TranslationHelpText">
-            Click text below to show translation
+                Click text below to show translation
             </InputLabel>
         }
         <span id="CardContentSpan" onClick={() => {
