@@ -21,6 +21,6 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 ## Still TODO
-- Move modal to it's own file
+- Have translations for text based on browser
 - Ensure mobile styling works
 - Deploy to github pages
