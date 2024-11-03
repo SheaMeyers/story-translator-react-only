@@ -7,6 +7,7 @@ import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import { Language, Paragraph } from "./types";
 import "./StoryDisplay.css";
+import { setHideHelpTextCookie, getHideHelpTextCookie } from "./cookies";
 
 type StoryDisplayProps = {
   bookJson: Paragraph[];
@@ -24,14 +25,26 @@ const StoryDisplay = ({
   updatePage,
 }: StoryDisplayProps) => {
   const [showPopover, setShowPopover] = useState<boolean>(false);
+  const [hideHelpText, setHideHelpText] = useState<boolean>(getHideHelpTextCookie());
+
+  const updateHideHelpText = (shouldShowHelpText: boolean) => {
+    setHideHelpText(shouldShowHelpText);
+    setHideHelpTextCookie(shouldShowHelpText);
+  };
 
   return (
     <>
       <span>
-        <InputLabel id="TranslationHelpText">
-          Click text below to show translation
-        </InputLabel>
-        <span id="CardContentSpan" onClick={() => setShowPopover(!showPopover)}>
+        {!hideHelpText &&
+            <InputLabel id="TranslationHelpText">
+            Click text below to show translation
+            </InputLabel>
+        }
+        <span id="CardContentSpan" onClick={() => {
+            if (!hideHelpText) updateHideHelpText(true)
+
+            setShowPopover(!showPopover)
+        }}>
           <Card>
             <CardContent>
               <Typography variant="body2">

@@ -37,3 +37,7 @@ export const getSelectedTextLanguageCookie = (): Language => getCookie(selectedT
 const selectedPopupLanguageCookieName = 'selectedPopupLanguageCookie'
 export const setSelectedPopupLanguageCookie = (value: string): void => setCookie(selectedPopupLanguageCookieName, value)
 export const getSelectedPopupLanguageCookie = (): Language => getCookie(selectedPopupLanguageCookieName) as Language
+
+const hideHelpTextCookieName = 'hideHelpTextCookie'
+export const setHideHelpTextCookie = (value: boolean): void => setCookie(hideHelpTextCookieName, value.toString())
+export const getHideHelpTextCookie = (): boolean => getCookie(hideHelpTextCookieName) === "true"
