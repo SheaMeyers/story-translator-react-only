@@ -49,7 +49,7 @@ const SelectorModal = ({
             id="book-select"
             value={Object.keys(Books).find(
               (key) => Books[key as BookTitles] === bookJson
-            )}
+            ) ?? ""}
             label="Age"
             onChange={(event: SelectChangeEvent) =>
               updateBookJson(event.target.value as BookTitles)
@@ -65,7 +65,7 @@ const SelectorModal = ({
           <Select
             labelId="book-language-select-label"
             id="book-language-select"
-            value={textLanguage?.toString()}
+            value={textLanguage?.toString() || ''}
             label="Age"
             onChange={(event: SelectChangeEvent) =>
               updateTextLanguage(event.target.value as Language)
@@ -81,7 +81,7 @@ const SelectorModal = ({
           <Select
             labelId="popup-language-select-label"
             id="popup-language-select"
-            value={popUpLanguage?.toString()}
+            value={popUpLanguage?.toString() || ''}
             label="Age"
             onChange={(event: SelectChangeEvent) =>
               updatePopupLanguage(event.target.value as Language)
