@@ -22,5 +22,4 @@ Your app is ready to be deployed!
 
 ## Still TODO
 - Have translations for text based on browser
-- Ensure mobile styling works
 - Deploy to github pages
