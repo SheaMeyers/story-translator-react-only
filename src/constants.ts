@@ -1,5 +1,5 @@
-import aliceInWonderland from "./translations/aliceInWonderland.json";
-import theCantervilleGhost from "./translations/theCantervilleGhost.json";
+import aliceInWonderland from "./bookTranslations/aliceInWonderland.json";
+import theCantervilleGhost from "./bookTranslations/theCantervilleGhost.json";
 
 export const Languages = ["English", "Spanish", "French", "German"] as const;
 
