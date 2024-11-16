@@ -1,3 +1,8 @@
 .Modal__Chooser {
     margin: 5vh;
 }
+
+.Modal__Button {
+    display: flex;
+    justify-content: flex-end;
+}

@@ -1,5 +1,6 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
+import CloseIcon from '@mui/icons-material/Close';
 import InputLabel from "@mui/material/InputLabel";
 import Modal from "@mui/material/Modal";
 import MenuItem from "@mui/material/MenuItem";
@@ -8,6 +9,7 @@ import TextField from "@mui/material/TextField";
 import { BookTitles, Language, Paragraph } from "./types";
 import { Books, Languages } from "./constants";
 import "./SelectorModal.css";
+import { Button } from "@mui/material";
 
 type SelectorModalProps = {
   isModalOpen: boolean;
@@ -43,6 +45,11 @@ const SelectorModal = ({
     <Card>
       <CardContent>
         <div className="Modal__Chooser">
+          <div className="Modal__Button">
+            <Button variant="contained" onClick={handleClose}>
+              <CloseIcon />
+            </Button>
+          </div>
           <InputLabel id="book-select-label">Choose Book</InputLabel>
           <Select
             labelId="book-select-label"
