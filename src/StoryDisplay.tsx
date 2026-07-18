@@ -31,6 +31,11 @@ const StoryDisplay = ({
     setHideHelpTextCookie(shouldShowHelpText);
   };
 
+  const goToPage = (nextPage: number) => {
+    setShowTranslation(false);
+    updatePage(nextPage);
+  };
+
   return (
     <>
       <span>
@@ -79,14 +84,14 @@ const StoryDisplay = ({
       <div className="ButtonContainer">
         <Button
           variant="contained"
-          onClick={() => updatePage(page - 1)}
+          onClick={() => goToPage(page - 1)}
           disabled={page === 0}
         >
           Previous Page
         </Button>
         <Button
           variant="contained"
-          onClick={() => updatePage(page + 1)}
+          onClick={() => goToPage(page + 1)}
           disabled={!bookJson || bookJson.length === page}
         >
           Next Page
