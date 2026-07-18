@@ -3,7 +3,6 @@ import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import InputLabel from "@mui/material/InputLabel";
-import Popover from "@mui/material/Popover";
 import Typography from "@mui/material/Typography";
 import { Language, Paragraph } from "./types";
 import "./StoryDisplay.css";
@@ -24,7 +23,7 @@ const StoryDisplay = ({
   page,
   updatePage,
 }: StoryDisplayProps) => {
-  const [showPopover, setShowPopover] = useState<boolean>(false);
+  const [showTranslation, setShowTranslation] = useState<boolean>(false);
   const [hideHelpText, setHideHelpText] = useState<boolean>(getHideHelpTextCookie());
 
   const updateHideHelpText = (shouldShowHelpText: boolean) => {
@@ -43,31 +42,26 @@ const StoryDisplay = ({
         <span id="CardContentSpan" onClick={() => {
             if (!hideHelpText) updateHideHelpText(true)
 
-            setShowPopover(!showPopover)
+            setShowTranslation((current) => !current)
         }}>
-          <Card>
-            <CardContent>
-              <Typography variant="body2">
-                {bookJson[page][textLanguage]}
-              </Typography>
-              <Popover
-                id="translation-popover"
-                open={showPopover}
-                anchorEl={document.getElementById("CardContentSpan")}
-                onClose={() => setShowPopover(false)}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                transformOrigin={{
-                  vertical: "bottom",
-                  horizontal: "left",
-                }}
-              >
-                {bookJson[page][popUpLanguage]}
-              </Popover>
-            </CardContent>
-          </Card>
+          <div className="StoryDisplay__Layout">
+            <Card className="StoryDisplay__TextCard">
+              <CardContent>
+                <Typography variant="body2">
+                  {bookJson[page][textLanguage]}
+                </Typography>
+              </CardContent>
+            </Card>
+            {showTranslation && (
+              <Card className="StoryDisplay__TranslationCard">
+                <CardContent>
+                  <Typography variant="body2">
+                    {bookJson[page][popUpLanguage]}
+                  </Typography>
+                </CardContent>
+              </Card>
+            )}
+          </div>
         </span>
       </span>
 

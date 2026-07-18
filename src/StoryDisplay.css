@@ -4,5 +4,31 @@
 
 #CardContentSpan {
     cursor: pointer;
+    display: block;
+    width: 100%;
+}
+
+.StoryDisplay__Layout {
+    display: flex;
+    gap: 1.25rem;
+    align-items: flex-start;
+    width: 100%;
+}
+
+.StoryDisplay__TextCard,
+.StoryDisplay__TranslationCard {
+    flex: 1;
+    min-width: 0;
+}
+
+.StoryDisplay__TranslationCard {
+    border-left: 4px solid #990099;
+    background: #f7f2fb;
+}
+
+@media (max-width: 768px) {
+    .StoryDisplay__Layout {
+        flex-direction: column;
+    }
 }
   
