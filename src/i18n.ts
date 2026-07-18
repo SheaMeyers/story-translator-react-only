@@ -4,10 +4,9 @@ import { initReactI18next } from 'react-i18next';
 const supportedLanguages = ['en', 'es', 'fr', 'de'];
 const userLanguage = navigator.language || navigator.languages?.[0] || 'en';
 const normalizedLanguage = userLanguage.split('-')[0];
-// const initialLanguage = supportedLanguages.includes(normalizedLanguage)
-//   ? normalizedLanguage
-//   : 'en';
-const initialLanguage = 'es'
+const initialLanguage = supportedLanguages.includes(normalizedLanguage)
+  ? normalizedLanguage
+  : 'en';
 
 
 const resources = {
