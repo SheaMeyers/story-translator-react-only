@@ -1,8 +1,8 @@
-import { Languages } from "./constants";
+import { LanguageKeys } from "./constants";
 
 export type BookTitles = "Alice in Wonderland" | "The Canterville Ghost";
 
-export type Language = (typeof Languages)[number];
+export type Language = (typeof LanguageKeys)[number];
 
 export type Paragraph = {
   English: string;

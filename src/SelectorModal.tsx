@@ -7,7 +7,7 @@ import MenuItem from "@mui/material/MenuItem";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 import TextField from "@mui/material/TextField";
 import { BookTitles, Language, Paragraph } from "./types";
-import { Books, Languages } from "./constants";
+import { Books, getTranslatedBooks, getTranslatedLanguages } from "./constants";
 import "./SelectorModal.css";
 import { Button } from "@mui/material";
 import { useTranslation } from "react-i18next";
@@ -38,6 +38,8 @@ const SelectorModal = ({
   updatePage,
 }: SelectorModalProps) => {
   const { t } = useTranslation();
+  const translatedBooks = getTranslatedBooks(t);
+  const translatedLanguages = getTranslatedLanguages(t);
 
   return (
   <Modal
@@ -66,8 +68,8 @@ const SelectorModal = ({
               updateBookJson(event.target.value as BookTitles)
             }
           >
-            {Object.keys(Books).map((book) => (
-              <MenuItem key={book} value={book}>{book}</MenuItem>
+            {translatedBooks.map((book) => (
+              <MenuItem key={book.value} value={book.value}>{book.label}</MenuItem>
             ))}
           </Select>
         </div>
@@ -82,8 +84,8 @@ const SelectorModal = ({
               updateTextLanguage(event.target.value as Language)
             }
           >
-            {Languages.map((language) => (
-              <MenuItem key={`${language}-book`} value={language}>{language}</MenuItem>
+            {translatedLanguages.map((language) => (
+              <MenuItem key={`${language.value}-book`} value={language.value}>{language.label}</MenuItem>
             ))}
           </Select>
         </div>
@@ -98,8 +100,8 @@ const SelectorModal = ({
               updatePopupLanguage(event.target.value as Language)
             }
           >
-            {Languages.map((language) => (
-              <MenuItem key={`${language}-pop`} value={language}>{language}</MenuItem>
+            {translatedLanguages.map((language) => (
+              <MenuItem key={`${language.value}-pop`} value={language.value}>{language.label}</MenuItem>
             ))}
           </Select>
         </div>

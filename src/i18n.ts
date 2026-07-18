@@ -4,9 +4,10 @@ import { initReactI18next } from 'react-i18next';
 const supportedLanguages = ['en', 'es', 'fr', 'de'];
 const userLanguage = navigator.language || navigator.languages?.[0] || 'en';
 const normalizedLanguage = userLanguage.split('-')[0];
-const initialLanguage = supportedLanguages.includes(normalizedLanguage)
-  ? normalizedLanguage
-  : 'en';
+// const initialLanguage = supportedLanguages.includes(normalizedLanguage)
+//   ? normalizedLanguage
+//   : 'en';
+const initialLanguage = 'es'
 
 
 const resources = {
@@ -23,6 +24,16 @@ const resources = {
         bookText: 'Book Text',
         translatedText: 'Translated Text',
         currentPage: 'Current Page',
+      },
+      languages: {
+        english: 'English',
+        spanish: 'Spanish',
+        french: 'French',
+        german: 'German',
+      },
+      books: {
+        aliceInWonderland: 'Alice in Wonderland',
+        theCantervilleGhost: 'The Canterville Ghost',
       },
       app: {
         selectBookAndLanguages: 'Select book and languages',
@@ -44,6 +55,16 @@ const resources = {
         translatedText: 'Texto traducido',
         currentPage: 'Página actual',
       },
+      languages: {
+        english: 'Inglés',
+        spanish: 'Español',
+        french: 'Francés',
+        german: 'Alemán',
+      },
+      books: {
+        aliceInWonderland: 'Alicia en el país de las maravillas',
+        theCantervilleGhost: 'El Fantasma de Canterville',
+      },
       app: {
         selectBookAndLanguages: 'Selecciona un libro y los idiomas',
         changeBookOrLanguages: 'Cambiar libro o idiomas',
@@ -64,6 +85,16 @@ const resources = {
         translatedText: 'Texte traduit',
         currentPage: 'Page actuelle',
       },
+      languages: {
+        english: 'Anglais',
+        spanish: 'Espagnol',
+        french: 'Français',
+        german: 'Allemand',
+      },
+      books: {
+        aliceInWonderland: 'Les Aventures d\'Alice au pays des merveilles',
+        theCantervilleGhost: 'Le Fantôme de Canterville',
+      },
       app: {
         selectBookAndLanguages: 'Sélectionnez un livre et les langues',
         changeBookOrLanguages: 'Changer de livre ou de langues',
@@ -83,6 +114,16 @@ const resources = {
         bookText: 'Buchtext',
         translatedText: 'Übersetzter Text',
         currentPage: 'Aktuelle Seite',
+      },
+      languages: {
+        english: 'Englisch',
+        spanish: 'Spanisch',
+        french: 'Französisch',
+        german: 'Deutsch',
+      },
+      books: {
+        aliceInWonderland: 'Alice\'s Abenteuer im Wunderland',
+        theCantervilleGhost: 'Das Gespenst von Canterville',
       },
       app: {
         selectBookAndLanguages: 'Buch und Sprachen auswählen',
