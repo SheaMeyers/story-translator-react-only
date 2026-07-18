@@ -59,17 +59,6 @@ const StoryDisplay = ({
             </Card>
             {showTranslation && (
               <Card className="StoryDisplay__TranslationCard">
-                <button
-                  type="button"
-                  className="StoryDisplay__CloseButton"
-                  aria-label="Close translation"
-                  onClick={(event) => {
-                    event.stopPropagation();
-                    setShowTranslation(false);
-                  }}
-                >
-                  ×
-                </button>
                 <CardContent>
                   <Typography variant="body2">
                     {bookJson[page][popUpLanguage]}

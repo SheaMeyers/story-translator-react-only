@@ -27,19 +27,6 @@
     background: #f7f2fb;
 }
 
-.StoryDisplay__CloseButton {
-    position: absolute;
-    top: 0.35rem;
-    right: 0.35rem;
-    border: none;
-    background: transparent;
-    color: #990099;
-    cursor: pointer;
-    font-size: 1.1rem;
-    line-height: 1;
-    padding: 0;
-}
-
 @media (max-width: 768px) {
     .StoryDisplay__Layout {
         flex-direction: column;
