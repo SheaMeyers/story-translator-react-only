@@ -84,7 +84,7 @@ const SelectorModal = ({
           </Select>
         </div>
         <div className="Modal__Chooser">
-          <InputLabel id="popup-language-select-label">Popup Text</InputLabel>
+          <InputLabel id="popup-language-select-label">Translated Text</InputLabel>
           <Select
             labelId="popup-language-select-label"
             id="popup-language-select"
