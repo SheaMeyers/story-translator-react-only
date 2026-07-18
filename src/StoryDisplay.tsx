@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Button from "@mui/material/Button";
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
@@ -35,6 +35,31 @@ const StoryDisplay = ({
     setShowTranslation(false);
     updatePage(nextPage);
   };
+
+  useEffect(() => {
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "ArrowLeft" && page > 0) {
+        event.preventDefault();
+        goToPage(page - 1);
+      }
+
+      if (event.key === "ArrowRight" && bookJson.length > page) {
+        event.preventDefault();
+        goToPage(page + 1);
+      }
+
+      if (event.key === "ArrowUp" || event.key === "ArrowDown") {
+        event.preventDefault();
+        setShowTranslation((current) => !current);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+    };
+  }, [bookJson.length, page, updatePage]);
 
   return (
     <>
