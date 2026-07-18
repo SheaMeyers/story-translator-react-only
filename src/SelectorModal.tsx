@@ -10,6 +10,7 @@ import { BookTitles, Language, Paragraph } from "./types";
 import { Books, Languages } from "./constants";
 import "./SelectorModal.css";
 import { Button } from "@mui/material";
+import { useTranslation } from "react-i18next";
 
 type SelectorModalProps = {
   isModalOpen: boolean;
@@ -35,7 +36,10 @@ const SelectorModal = ({
   updatePopupLanguage,
   page,
   updatePage,
-}: SelectorModalProps) => (
+}: SelectorModalProps) => {
+  const { t } = useTranslation();
+
+  return (
   <Modal
     open={isModalOpen}
     onClose={handleClose}
@@ -50,7 +54,7 @@ const SelectorModal = ({
               <CloseIcon />
             </Button>
           </div>
-          <InputLabel id="book-select-label">Choose Book</InputLabel>
+          <InputLabel id="book-select-label">{t('modal.chooseBook')}</InputLabel>
           <Select
             labelId="book-select-label"
             id="book-select"
@@ -68,7 +72,7 @@ const SelectorModal = ({
           </Select>
         </div>
         <div className="Modal__Chooser">
-          <InputLabel id="book-language-select-label">Book Text</InputLabel>
+          <InputLabel id="book-language-select-label">{t('modal.bookText')}</InputLabel>
           <Select
             labelId="book-language-select-label"
             id="book-language-select"
@@ -84,7 +88,7 @@ const SelectorModal = ({
           </Select>
         </div>
         <div className="Modal__Chooser">
-          <InputLabel id="popup-language-select-label">Translated Text</InputLabel>
+          <InputLabel id="popup-language-select-label">{t('modal.translatedText')}</InputLabel>
           <Select
             labelId="popup-language-select-label"
             id="popup-language-select"
@@ -102,7 +106,7 @@ const SelectorModal = ({
 
         {bookJson && (
           <div className="Modal__Chooser">
-            <InputLabel id="current-page-label">Current Page</InputLabel>
+            <InputLabel id="current-page-label">{t('modal.currentPage')}</InputLabel>
             <TextField
               id="current-page-input"
               variant="outlined"
@@ -119,6 +123,7 @@ const SelectorModal = ({
       </CardContent>
     </Card>
   </Modal>
-);
+  );
+};
 
 export default SelectorModal;

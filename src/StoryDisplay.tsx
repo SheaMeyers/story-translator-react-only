@@ -7,6 +7,7 @@ import Typography from "@mui/material/Typography";
 import { Language, Paragraph } from "./types";
 import "./StoryDisplay.css";
 import { setHideHelpTextCookie, getHideHelpTextCookie } from "./cookies";
+import { useTranslation } from "react-i18next";
 
 type StoryDisplayProps = {
   bookJson: Paragraph[];
@@ -23,6 +24,7 @@ const StoryDisplay = ({
   page,
   updatePage,
 }: StoryDisplayProps) => {
+  const { t } = useTranslation();
   const [showTranslation, setShowTranslation] = useState<boolean>(false);
   const [hideHelpText, setHideHelpText] = useState<boolean>(getHideHelpTextCookie());
 
@@ -66,7 +68,7 @@ const StoryDisplay = ({
       <span>
         {!hideHelpText &&
             <InputLabel id="TranslationHelpText">
-                Click text below to show translation
+                {t('story.helpText')}
             </InputLabel>
         }
         <span id="CardContentSpan" onClick={() => {
@@ -101,14 +103,14 @@ const StoryDisplay = ({
           onClick={() => goToPage(page - 1)}
           disabled={page === 0}
         >
-          Previous
+          {t('story.previous')}
         </Button>
         <Button
           variant="contained"
           onClick={() => goToPage(page + 1)}
           disabled={!bookJson || bookJson.length === page}
         >
-          Next
+          {t('story.next')}
         </Button>
       </div>
     </>

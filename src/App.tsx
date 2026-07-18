@@ -15,8 +15,10 @@ import { Books } from "./constants";
 import SelectorModal from "./SelectorModal";
 import StoryDisplay from "./StoryDisplay";
 import "./App.css";
+import { useTranslation } from "react-i18next";
 
 const App = () => {
+  const { t } = useTranslation();
   const [bookJson, setBookJson] = useState<Paragraph[]>(
     Books[getSelectedBookCookie()] || []
   );
@@ -60,9 +62,9 @@ const App = () => {
         onClick={() => setIsModalOpen(true)}
       >
         {!bookJson || !textLanguage || !popUpLanguage ? (
-          <span>Select book and languages</span>
+          <span>{t('app.selectBookAndLanguages')}</span>
         ) : (
-          <span>Change book or languages</span>
+          <span>{t('app.changeBookOrLanguages')}</span>
         )}
       </Button>
 
