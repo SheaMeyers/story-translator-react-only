@@ -76,14 +76,14 @@ const StoryDisplay = ({
           onClick={() => goToPage(page - 1)}
           disabled={page === 0}
         >
-          Previous Page
+          Previous
         </Button>
         <Button
           variant="contained"
           onClick={() => goToPage(page + 1)}
           disabled={!bookJson || bookJson.length === page}
         >
-          Next Page
+          Next
         </Button>
       </div>
     </>
