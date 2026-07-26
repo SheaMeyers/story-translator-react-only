@@ -1,25 +1,13 @@
-# Story translator (React Only)
+# Story translator
 
-## Available Scripts
+Live website: https://translatedstories.com
 
-In the project directory, you can run:
+This project allows you read a story in one language and optionally see the translation in another.
 
-### `npm start`
+Currently two books, Alice in Wonderland and The Canterville Ghost, are available and four languages,
+English, Spanish, German, and French, are supported.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Running the project
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-## Live Site
-
-https://story-translator.sheameyers.com/
+You can run this project locally by cloning this code base, running `npm install`, then `npm run start`,
+and then going to localhost:3000 in your browser
