@@ -51,8 +51,9 @@ const StoryDisplay = ({
       }
 
       if (event.key === "ArrowUp" || event.key === "ArrowDown") {
-        event.preventDefault();
-        setShowTranslation((current) => !current);
+        event.preventDefault()
+        if (!hideHelpText) updateHideHelpText(true)
+        setShowTranslation((current) => !current)
       }
     };
 
