@@ -98,20 +98,23 @@ const StoryDisplay = ({
       </span>
 
       <div className="ButtonContainer">
-        <Button
-          variant="contained"
-          onClick={() => goToPage(page - 1)}
-          disabled={page === 0}
-        >
-          {t('story.previous')}
-        </Button>
-        <Button
-          variant="contained"
-          onClick={() => goToPage(page + 1)}
-          disabled={!bookJson || bookJson.length === page}
-        >
-          {t('story.next')}
-        </Button>
+        <div className="ButtonRow">
+          <Button
+            variant="contained"
+            onClick={() => goToPage(page - 1)}
+            disabled={page === 0}
+          >
+            {t('story.previous')}
+          </Button>
+          <Button
+            variant="contained"
+            onClick={() => goToPage(page + 1)}
+            disabled={!bookJson || bookJson.length === page}
+          >
+            {t('story.next')}
+          </Button>
+        </div>
+        <p className="PageNumber">{t('story.page', { current: page + 1, total: bookJson.length })}</p>
       </div>
     </>
   );

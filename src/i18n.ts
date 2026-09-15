@@ -17,6 +17,7 @@ const resources = {
         previous: 'Previous',
         next: 'Next',
         closeTranslation: 'Close translation',
+        page: 'Page {{current}} of {{total}}',
       },
       modal: {
         chooseBook: 'Choose Book',
@@ -47,6 +48,7 @@ const resources = {
         previous: 'Anterior',
         next: 'Siguiente',
         closeTranslation: 'Cerrar traducción',
+        page: 'Página {{current}} de {{total}}',
       },
       modal: {
         chooseBook: 'Elegir libro',
@@ -77,6 +79,7 @@ const resources = {
         previous: 'Précédent',
         next: 'Suivant',
         closeTranslation: 'Fermer la traduction',
+        page: 'Page {{current}} sur {{total}}',
       },
       modal: {
         chooseBook: 'Choisir un livre',
@@ -107,6 +110,7 @@ const resources = {
         previous: 'Zurück',
         next: 'Weiter',
         closeTranslation: 'Übersetzung schließen',
+        page: 'Seite {{current}} von {{total}}',
       },
       modal: {
         chooseBook: 'Buch auswählen',

@@ -21,9 +21,17 @@
 }
 
 .ButtonContainer {
+  width: 100%;
+}
+
+.ButtonRow {
   display: flex;
   justify-content: space-around;
   width: 100%;
+}
+
+.PageNumber {
+  color: white;
 }
 
 .ModalButton {
